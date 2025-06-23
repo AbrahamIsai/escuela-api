@@ -1,10 +1,11 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const path = require('path');
-const app = express();
-const PORT = 3000;
+require('dotenv').config(); // Cargar variables desde .env
 
-const uri = 'mongodb+srv://alcantarazuletaabraham46:isai12345R@abraham.lmw2w8u.mongodb.net/?retryWrites=true&w=majority&appName=Abraham';
+const app = express();
+const PORT = process.env.PORT || 3001;
+const uri = process.env.MONGO_URI; // URI de Mongo Atlas desde .env
 const client = new MongoClient(uri);
 
 app.use(express.urlencoded({ extended: true }));
@@ -238,6 +239,7 @@ app.get('/visualizar', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}/alumnos`);
 });
+
 
